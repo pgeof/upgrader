@@ -1,3 +1,7 @@
+## 8.2.1
+
+- Add argument to onUpdate callback to indicate if dialog will pop.
+
 ## 8.2.0
 
 - [336] Changed the device_info_plus dependency version from ^9.0.1 to any which now allows for older versions.
