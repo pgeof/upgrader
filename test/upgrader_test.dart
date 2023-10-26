@@ -51,10 +51,8 @@ void main() {
           buildNumber: '400');
 
       final client = MockITunesSearchClient.setupMockClient();
-      final upgrader = Upgrader(
-          upgraderOS: MockUpgraderOS(ios: true),
-          client: client,
-          debugLogging: true);
+      final upgrader =
+          Upgrader(upgraderOS: MockUpgraderOS(ios: true), client: client, debugLogging: true);
 
       expect(tester.takeException(), null);
       await tester.pumpAndSettle();
@@ -67,10 +65,8 @@ void main() {
       upgrader.installPackageInfo(packageInfo: packageInfo);
       expect(await upgrader.initialize(), isTrue);
 
-      final upgrader1 = Upgrader(
-          upgraderOS: MockUpgraderOS(ios: true),
-          client: client,
-          debugLogging: true);
+      final upgrader1 =
+          Upgrader(upgraderOS: MockUpgraderOS(ios: true), client: client, debugLogging: true);
       upgrader1.installPackageInfo(packageInfo: packageInfo);
       expect(await upgrader1.initialize(), isTrue);
     });
@@ -84,10 +80,8 @@ void main() {
     await tester.runAsync(() async {
       // test code here
       final client = MockITunesSearchClient.setupMockClient();
-      final upgrader = Upgrader(
-          upgraderOS: MockUpgraderOS(ios: true),
-          client: client,
-          debugLogging: true);
+      final upgrader =
+          Upgrader(upgraderOS: MockUpgraderOS(ios: true), client: client, debugLogging: true);
 
       expect(tester.takeException(), null);
       await tester.pumpAndSettle();
@@ -166,10 +160,8 @@ void main() {
 
   testWidgets('test UpgradeWidget', (WidgetTester tester) async {
     final client = MockITunesSearchClient.setupMockClient();
-    final upgrader = Upgrader(
-        upgraderOS: MockUpgraderOS(ios: true),
-        client: client,
-        debugLogging: true);
+    final upgrader =
+        Upgrader(upgraderOS: MockUpgraderOS(ios: true), client: client, debugLogging: true);
 
     upgrader.installPackageInfo(
         packageInfo: PackageInfo(
@@ -182,7 +174,7 @@ void main() {
 
     var called = false;
     var notCalled = true;
-    upgrader.onUpdate = () {
+    upgrader.onUpdate = (shouldPop) {
       called = true;
       return true;
     };
@@ -277,7 +269,7 @@ void main() {
 
     var called = false;
     var notCalled = true;
-    upgrader.onUpdate = () {
+    upgrader.onUpdate = (shouldPop) {
       called = true;
       return true;
     };
@@ -325,8 +317,7 @@ void main() {
     expect(find.byType(CupertinoDialogAction), findsNWidgets(3));
     expect(
       find.byWidgetPredicate((widget) =>
-          widget is CupertinoDialogAction &&
-          widget.textStyle == cupertinoButtonTextStyle),
+          widget is CupertinoDialogAction && widget.textStyle == cupertinoButtonTextStyle),
       findsNWidgets(3),
     );
     expect(find.text(upgrader.messages.buttonTitleIgnore), findsOneWidget);
@@ -344,8 +335,7 @@ void main() {
 
   testWidgets('test UpgradeWidget ignore', (WidgetTester tester) async {
     final client = MockITunesSearchClient.setupMockClient();
-    final upgrader =
-        Upgrader(upgraderOS: MockUpgraderOS(ios: true), client: client);
+    final upgrader = Upgrader(upgraderOS: MockUpgraderOS(ios: true), client: client);
 
     upgrader.installPackageInfo(
         packageInfo: PackageInfo(
@@ -362,7 +352,7 @@ void main() {
       called = true;
       return true;
     };
-    upgrader.onUpdate = () {
+    upgrader.onUpdate = (shouldPop) {
       notCalled = false;
       return true;
     };
@@ -388,8 +378,7 @@ void main() {
 
   testWidgets('test UpgradeWidget later', (WidgetTester tester) async {
     final client = MockITunesSearchClient.setupMockClient();
-    final upgrader =
-        Upgrader(upgraderOS: MockUpgraderOS(ios: true), client: client);
+    final upgrader = Upgrader(upgraderOS: MockUpgraderOS(ios: true), client: client);
 
     upgrader.installPackageInfo(
         packageInfo: PackageInfo(
@@ -410,7 +399,7 @@ void main() {
       notCalled = false;
       return true;
     };
-    upgrader.onUpdate = () {
+    upgrader.onUpdate = (shouldPop) {
       notCalled = false;
       return true;
     };
@@ -432,8 +421,7 @@ void main() {
 
   testWidgets('test UpgradeWidget pop scope', (WidgetTester tester) async {
     final client = MockITunesSearchClient.setupMockClient();
-    final upgrader =
-        Upgrader(upgraderOS: MockUpgraderOS(ios: true), client: client);
+    final upgrader = Upgrader(upgraderOS: MockUpgraderOS(ios: true), client: client);
 
     upgrader.installPackageInfo(
         packageInfo: PackageInfo(
@@ -467,10 +455,8 @@ void main() {
 
   testWidgets('test UpgradeWidget Card upgrade', (WidgetTester tester) async {
     final client = MockITunesSearchClient.setupMockClient();
-    final upgrader = Upgrader(
-        upgraderOS: MockUpgraderOS(ios: true),
-        client: client,
-        debugLogging: true);
+    final upgrader =
+        Upgrader(upgraderOS: MockUpgraderOS(ios: true), client: client, debugLogging: true);
 
     upgrader.installPackageInfo(
         packageInfo: PackageInfo(
@@ -485,7 +471,7 @@ void main() {
 
     var called = false;
     var notCalled = true;
-    upgrader.onUpdate = () {
+    upgrader.onUpdate = (shouldPop) {
       called = true;
       return true;
     };
@@ -517,10 +503,8 @@ void main() {
 
   testWidgets('test UpgradeWidget Card ignore', (WidgetTester tester) async {
     final client = MockITunesSearchClient.setupMockClient();
-    final upgrader = Upgrader(
-        upgraderOS: MockUpgraderOS(ios: true),
-        client: client,
-        debugLogging: true);
+    final upgrader =
+        Upgrader(upgraderOS: MockUpgraderOS(ios: true), client: client, debugLogging: true);
 
     upgrader.installPackageInfo(
         packageInfo: PackageInfo(
@@ -541,7 +525,7 @@ void main() {
       notCalled = false;
       return true;
     };
-    upgrader.onUpdate = () {
+    upgrader.onUpdate = (shouldPop) {
       notCalled = false;
       return true;
     };
@@ -563,10 +547,8 @@ void main() {
 
   testWidgets('test UpgradeWidget Card later', (WidgetTester tester) async {
     final client = MockITunesSearchClient.setupMockClient();
-    final upgrader = Upgrader(
-        upgraderOS: MockUpgraderOS(ios: true),
-        client: client,
-        debugLogging: true);
+    final upgrader =
+        Upgrader(upgraderOS: MockUpgraderOS(ios: true), client: client, debugLogging: true);
 
     upgrader.installPackageInfo(
         packageInfo: PackageInfo(
@@ -587,7 +569,7 @@ void main() {
       notCalled = false;
       return true;
     };
-    upgrader.onUpdate = () {
+    upgrader.onUpdate = (shouldPop) {
       notCalled = false;
       return true;
     };
@@ -609,10 +591,8 @@ void main() {
 
   testWidgets('test upgrader minAppVersion', (WidgetTester tester) async {
     final client = MockITunesSearchClient.setupMockClient();
-    final upgrader = Upgrader(
-        upgraderOS: MockUpgraderOS(ios: true),
-        client: client,
-        debugLogging: true);
+    final upgrader =
+        Upgrader(upgraderOS: MockUpgraderOS(ios: true), client: client, debugLogging: true);
     upgrader.minAppVersion = '1.0.0';
 
     upgrader.installPackageInfo(
@@ -652,13 +632,10 @@ void main() {
     expect(find.text(upgrader.messages.buttonTitleUpdate), findsOneWidget);
   }, skip: false);
 
-  testWidgets('test upgrader minAppVersion description android',
-      (WidgetTester tester) async {
+  testWidgets('test upgrader minAppVersion description android', (WidgetTester tester) async {
     final client = await MockPlayStoreSearchClient.setupMockClient();
-    final upgrader = Upgrader(
-        upgraderOS: MockUpgraderOS(android: true),
-        client: client,
-        debugLogging: true);
+    final upgrader =
+        Upgrader(upgraderOS: MockUpgraderOS(android: true), client: client, debugLogging: true);
 
     upgrader.installPackageInfo(
         packageInfo: PackageInfo(
@@ -673,15 +650,12 @@ void main() {
     expect(upgrader.minAppVersion, '4.5.6');
   }, skip: false);
 
-  testWidgets('test upgrader minAppVersion description ios',
-      (WidgetTester tester) async {
+  testWidgets('test upgrader minAppVersion description ios', (WidgetTester tester) async {
     final client = MockITunesSearchClient.setupMockClient(
       description: 'Use this app. [:mav: 4.5.6]',
     );
-    final upgrader = Upgrader(
-        upgraderOS: MockUpgraderOS(ios: true),
-        client: client,
-        debugLogging: true);
+    final upgrader =
+        Upgrader(upgraderOS: MockUpgraderOS(ios: true), client: client, debugLogging: true);
 
     upgrader.installPackageInfo(
         packageInfo: PackageInfo(
@@ -707,10 +681,7 @@ void main() {
 
     upgrader.installPackageInfo(
         packageInfo: PackageInfo(
-            appName: 'MyApp',
-            packageName: 'com.google.MyApp',
-            version: '0.1.0',
-            buildNumber: '1'));
+            appName: 'MyApp', packageName: 'com.google.MyApp', version: '0.1.0', buildNumber: '1'));
     upgrader.initialize().then((value) {});
     await tester.pumpAndSettle();
 
@@ -724,7 +695,7 @@ void main() {
       notCalled = false;
       return true;
     };
-    upgrader.onUpdate = () {
+    upgrader.onUpdate = (shouldPop) {
       notCalled = false;
       return true;
     };
@@ -769,12 +740,9 @@ void main() {
 
     test('will use appcast critical version if exists', () async {
       final upgraderOS = MockUpgraderOS(android: true);
-      final Client mockClient =
-          setupMockClient(filePath: 'test/testappcast_critical.xml');
-      final appcast = Appcast(
-          client: mockClient,
-          upgraderOS: upgraderOS,
-          upgraderDevice: MockUpgraderDevice());
+      final Client mockClient = setupMockClient(filePath: 'test/testappcast_critical.xml');
+      final appcast =
+          Appcast(client: mockClient, upgraderOS: upgraderOS, upgraderDevice: MockUpgraderDevice());
 
       final upgrader = Upgrader(
         upgraderOS: upgraderOS,
@@ -817,12 +785,9 @@ void main() {
     test('will use appcast last item', () async {
       final upgraderOS = MockUpgraderOS(ios: true);
 
-      final Client mockClient =
-          setupMockClient(filePath: 'test/testappcastmulti.xml');
-      final appcast = Appcast(
-          client: mockClient,
-          upgraderOS: upgraderOS,
-          upgraderDevice: MockUpgraderDevice());
+      final Client mockClient = setupMockClient(filePath: 'test/testappcastmulti.xml');
+      final appcast =
+          Appcast(client: mockClient, upgraderOS: upgraderOS, upgraderDevice: MockUpgraderDevice());
 
       final upgrader = Upgrader(
         upgraderOS: upgraderOS,
@@ -866,8 +831,7 @@ void main() {
     }, skip: false);
 
     test('durationUntilAlertAgain is 0 days', () async {
-      final upgrader =
-          Upgrader(durationUntilAlertAgain: const Duration(seconds: 0));
+      final upgrader = Upgrader(durationUntilAlertAgain: const Duration(seconds: 0));
       expect(upgrader.durationUntilAlertAgain, const Duration(seconds: 0));
 
       UpgradeAlert(upgrader: upgrader);
@@ -878,25 +842,21 @@ void main() {
     }, skip: false);
 
     test('durationUntilAlertAgain card is valid', () async {
-      final upgrader =
-          Upgrader(durationUntilAlertAgain: const Duration(days: 3));
+      final upgrader = Upgrader(durationUntilAlertAgain: const Duration(days: 3));
       UpgradeCard(upgrader: upgrader);
       expect(upgrader.durationUntilAlertAgain, const Duration(days: 3));
 
-      final upgrader2 =
-          Upgrader(durationUntilAlertAgain: const Duration(days: 10));
+      final upgrader2 = Upgrader(durationUntilAlertAgain: const Duration(days: 10));
       UpgradeCard(upgrader: upgrader2);
       expect(upgrader2.durationUntilAlertAgain, const Duration(days: 10));
     }, skip: false);
 
     test('durationUntilAlertAgain alert is valid', () async {
-      final upgrader =
-          Upgrader(durationUntilAlertAgain: const Duration(days: 3));
+      final upgrader = Upgrader(durationUntilAlertAgain: const Duration(days: 3));
       UpgradeAlert(upgrader: upgrader);
       expect(upgrader.durationUntilAlertAgain, const Duration(days: 3));
 
-      final upgrader2 =
-          Upgrader(durationUntilAlertAgain: const Duration(days: 10));
+      final upgrader2 = Upgrader(durationUntilAlertAgain: const Duration(days: 10));
       UpgradeAlert(upgrader: upgrader2);
       expect(upgrader2.durationUntilAlertAgain, const Duration(days: 10));
     }, skip: false);
@@ -905,10 +865,8 @@ void main() {
   group('shouldDisplayUpgrade', () {
     test('should respect debugDisplayAlways property', () {
       final client = MockITunesSearchClient.setupMockClient();
-      final upgrader = Upgrader(
-          upgraderOS: MockUpgraderOS(ios: true),
-          client: client,
-          debugLogging: true);
+      final upgrader =
+          Upgrader(upgraderOS: MockUpgraderOS(ios: true), client: client, debugLogging: true);
 
       expect(upgrader.shouldDisplayUpgrade(), false);
       upgrader.debugDisplayAlways = true;
